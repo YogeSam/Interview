@@ -7,7 +7,7 @@ import org.junit.Test;
 public class CustomerTest {
 
 	@Test
-	public void test() {
+	public void testMementoPattern() {
 		Customer c = new Customer("Yogesh", 1);
 		assert(c.getId() == 1);
 		c.setId(2);
