@@ -21,8 +21,7 @@ public class EnterpriseNodeLoader {
 
 	public  <T> T[] loadFromJSONFile(String strFile, Class<T[]> generic) throws IOException{
 		String strJson = new String(Files.readAllBytes(Paths.get(strFile))); 
-		Gson g = new Gson();
-		return g.fromJson(strJson, generic);
+		return loadFromJSONArray(strJson, generic);
 	}
 
 }
