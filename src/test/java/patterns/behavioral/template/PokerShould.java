@@ -7,6 +7,8 @@ import static org.mockito.Mockito.mock;
 import org.junit.Test;
 import org.mockito.InOrder;
 
+import patterns.console.Console;
+
 public class PokerShould {
 
 

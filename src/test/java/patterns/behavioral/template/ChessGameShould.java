@@ -4,6 +4,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 import org.mockito.InOrder;
+
+import patterns.console.Console;
+
 import static org.mockito.Mockito.*;
 
 public class ChessGameShould {

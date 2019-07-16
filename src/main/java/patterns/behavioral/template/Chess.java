@@ -1,5 +1,7 @@
 package patterns.behavioral.template;
 
+import patterns.console.Console;
+
 public class Chess extends Game {
 
 	
