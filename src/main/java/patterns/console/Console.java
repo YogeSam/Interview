@@ -1,4 +1,4 @@
-package patterns.behavioral.template;
+package patterns.console;
 
 public class Console {
 
