@@ -1,5 +1,6 @@
 package patterns.behavioral.chainofresponsibility;
 
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InOrder;
@@ -42,6 +43,14 @@ public class ALoggerShould {
 		inorder.verify(console).printLine("DEBUG:" + MESSAGE);
 		inorder.verify(console).printLine("ERROR:" + MESSAGE);
 		inorder.verify(console).printLine("ALL:" + MESSAGE);
+	}
+	
+	@After
+	public void destroy(){
+		console = null;
+		logger = null;
+		inorder = null;
+		
 	}
 
 	
