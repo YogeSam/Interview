@@ -7,39 +7,53 @@ import java.util.Vector;
 
 public class Combinatorial {
 
-	public Vector<Integer> findConsecutiveGroupofLargestSum(int[] numbers) {
+	public Vector<Integer> findConsecutiveSequenceWithLargestSum(int[] numbers) {
 		Vector<Integer> numberArray = convertIntArrayToVector(numbers);
-		return findGroupOfDigitsWithMaxSum(generateGroupOfDigits(numberArray));
+		return findTheSequenceWithLargestSum(generateSequencesOfDigits(numberArray));
 	}
 
-	private Vector<Vector<Integer>> generateGroupOfDigits(Vector<Integer> numberArray) {
-		Vector<Vector<Integer>> listOfGroups =  new Vector<Vector<Integer>> ();
-		for(int i = 0; i<numberArray.size(); i++){
-			listOfGroups.addAll(makeGroupsOfDigts(numberArray, i));
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	private Vector<Vector<Integer>> generateSequencesOfDigits(Vector<Integer> numberArray) {
+		Vector<Vector<Integer>> listOfSequences =  new Vector<Vector<Integer>> ();
+		for(int startLocation = 0; startLocation<numberArray.size(); startLocation++){
+			
+			listOfSequences.addAll(makeConsecutiveSequnceOfDigitsFromGivenListOfDigits(numberArray, startLocation));
 		}
-		return listOfGroups;
+		return listOfSequences;
 	}
 
-	 private Vector<Vector<Integer>> makeGroupsOfDigts(Vector<Integer> numberArray, int startOfArray) {
-		Vector<Vector<Integer>> listOfGroups = new Vector<Vector<Integer>> ();
+	 private Vector<Vector<Integer>> makeConsecutiveSequnceOfDigitsFromGivenListOfDigits(Vector<Integer> numberArray, int startOfLocation) {
+		Vector<Vector<Integer>> listOfPossibleSequences = new Vector<Vector<Integer>> ();
 		
-		if(isEndOfTheArray(numberArray, startOfArray))
-				return listOfGroups;
+		if(isIndexAtTheEndOfSequence(numberArray, startOfLocation))
+				return listOfPossibleSequences;
 		
-		Vector<Integer> startingDigit = new Vector<Integer>();
-		startingDigit.add(numberArray.get(startOfArray));
-		listOfGroups.add(startingDigit);
+		Vector<Integer> startingSequence = new Vector<Integer>();
+		startingSequence.add(numberArray.get(startOfLocation));
+		listOfPossibleSequences.add(startingSequence);
 		
-		Vector<Vector<Integer>> remainingGroupOfDigits = makeGroupsOfDigts(numberArray, startOfArray+1);
-		for(Vector<Integer> group: remainingGroupOfDigits){
-			group.addAll(0,startingDigit);
-			listOfGroups.add(group);
+		Vector<Vector<Integer>> remainingGroupOfSequences = makeConsecutiveSequnceOfDigitsFromGivenListOfDigits(numberArray, startOfLocation+1);
+		for(Vector<Integer> sequence: remainingGroupOfSequences){
+			sequence.addAll(0,startingSequence);
+			listOfPossibleSequences.add(sequence);
 		}
-		return listOfGroups;
+		return listOfPossibleSequences;
 	}
 
-	private boolean isEndOfTheArray(Vector<Integer> numberArray, int startOfArray) {
-		return startOfArray >= numberArray.size();
+	private boolean isIndexAtTheEndOfSequence(Vector<Integer> numberArray, int index) {
+		return index >= numberArray.size();
 	}
 
 	public static Vector<Integer> convertIntArrayToVector(int[] input) {
@@ -50,29 +64,28 @@ public class Combinatorial {
 	        return list;
 	 }
 	 
-	 private Vector<Integer> findGroupOfDigitsWithMaxSum (Vector<Vector<Integer>> listOfGroups){
-		 int location = 0;
-		 int sum = -9999;
+	 private Vector<Integer> findTheSequenceWithLargestSum (Vector<Vector<Integer>> listOfSequences){
+		 int locationofsequencewithlargestsum = 0;
+		 int largestsumofsequence = -9999;
 		 
-		 int counter = 0;
-		 for(Vector<Integer> group: listOfGroups){
-			 	int sumofgroup = makeSumFromGroup(group); 
-				if(sum < sumofgroup){
-					location = counter;
-					sum = makeSumFromGroup(group);
+		 int location = 0;
+		 for(Vector<Integer> group: listOfSequences){
+			 	int sumthesequence = sumTheSequence(group); 
+				if(largestsumofsequence < sumthesequence){
+					locationofsequencewithlargestsum = location;
+					largestsumofsequence = sumthesequence;
 				}
-				counter++;
+				location++;
 		 }
 		 
-		 return listOfGroups.get(location);
+		 return listOfSequences.get(locationofsequencewithlargestsum);
 	 }
 
-	private int makeSumFromGroup(Vector<Integer> input) {
-		// TODO Auto-generated method stub
-		int sum = 0;
-		for (int i : input) {
-            sum += i;
+	private int sumTheSequence(Vector<Integer> sequence) {
+		int sumofsequence = 0;
+		for (int numberInSequence : sequence) {
+            sumofsequence += numberInSequence;
         }
-	    return sum;
+	    return sumofsequence;
 	}
 }
