@@ -25,7 +25,7 @@ public class Combinatorial {
 	
 	
 	
-	
+	//This is where all the private functions are available.
 	private Vector<Vector<Integer>> generateSequencesOfDigits(Vector<Integer> numberArray) {
 		Vector<Vector<Integer>> listOfSequences =  new Vector<Vector<Integer>> ();
 		for(int startLocation = 0; startLocation<numberArray.size(); startLocation++){
