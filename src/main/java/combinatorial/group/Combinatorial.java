@@ -1,3 +1,4 @@
+//This is a class file for performing combinatorics functions
 package combinatorial.group;
 
 import java.util.ArrayList;
