@@ -14,7 +14,7 @@ import com.interview.example.junitmavenexample.model.print.PrintError;
 public class SerializeToJsonTest {
 
 	@Test(expected = JsonSerializationException.class)
-	public void testSerializeException() {
+	public void testSerializeExceptionWithoutAnnotation() {
 		class TestObject1{
 			int n;
 			String name;
