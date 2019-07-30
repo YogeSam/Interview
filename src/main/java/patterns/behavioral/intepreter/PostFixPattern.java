@@ -1,4 +1,4 @@
-package patterns.behavioral.observer;
+package patterns.behavioral.intepreter;
 
 import java.util.Stack;
 

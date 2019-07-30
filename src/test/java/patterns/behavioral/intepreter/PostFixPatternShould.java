@@ -1,4 +1,4 @@
-package patterns.behavioral.observer;
+package patterns.behavioral.intepreter;
 
 import static org.junit.Assert.*;
 import static org.hamcrest.MatcherAssert.assertThat; 
@@ -6,7 +6,7 @@ import static org.hamcrest.Matchers.*;
 
 import org.junit.Test;
 
-import patterns.behavioral.intepreter.InterpretPattern;
+import patterns.behavioral.intepreter.PostFixPattern;
 
 public class PostFixPatternShould {
 
