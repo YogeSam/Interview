@@ -1,14 +1,20 @@
 package com.book;
 
 import static org.mockito.Mockito.*;
+
+import org.json.JSONException;
 import org.junit.Test;
+import org.skyscreamer.jsonassert.JSONAssert;
 
 import com.book.entity.BookEntity;
 import com.book.service.BookNotFoundExcpeption;
 import com.book.service.BookService;
 
 public class BookInfoShould {
-
+	final BookEntity bookEntity = new BookEntity("1","Test Book", "Test Author");
+	final String bookDetailJson = "{\"bookId\":\"1\",\"bookName\":\"Test Book\",\"authorName\":\"Test Author\"}";
+	final String bookIdJson = "{\"bookId\" : \"1\" }";
+	
 	@Test(expected = BookNotFoundExcpeption.class)
 	public void throwBookNotFoundException() {
 		BookInfo bookinfo = new BookInfo();
@@ -18,14 +24,17 @@ public class BookInfoShould {
 	}
 	
 	@Test
-	public void returnJSONBookObjectGivenValidBookId(){
+	public void returnJSONBookObjectGivenValidBookId() throws JSONException{
 		BookInfo bookinfo = new BookInfo();
 		BookService bookService = mock(BookService.class);
-		when(bookService.findBook(1)).thenReturn(new BookEntity("1","Test Book", "Test Author"));
+		when(bookService.findBook(1)).thenReturn(bookEntity);
+
 		String bookJson = bookinfo.findBook(bookService, 1);
-		System.out.println(bookJson);
+		
 		verify(bookService).findBook(1);
-		assert(bookJson.indexOf("Test Book") >= 0 && bookJson.indexOf("Test Author") >= 0 );
+
+		JSONAssert.assertEquals(bookIdJson, bookJson, false);
+		JSONAssert.assertEquals(bookDetailJson, bookJson, true); 		
 	}
 
 }
