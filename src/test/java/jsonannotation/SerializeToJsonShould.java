@@ -9,12 +9,11 @@ import org.junit.Test;
 
 import com.interview.example.junitmavenexample.model.print.PrintError;
 
+public class SerializeToJsonShould {
 
-
-public class SerializeToJsonTest {
-
-	@Test(expected = JsonSerializationException.class)
-	public void testSerializeException() {
+	@Test(expected = JsonSerializationException.class )
+	public void throw_SerializeException_when_object_not_annotated() {
+		
 		class TestObject1{
 			int n;
 			String name;
@@ -23,7 +22,7 @@ public class SerializeToJsonTest {
 	}
 	
 	@Test
-	public void testSerialize() {
+	public void serialize_object_when_annotated() {
 		assert(new SerializeToJson().serialize(new TestObject(1, "Test")).indexOf("Test") >= 0);
 	}
 	

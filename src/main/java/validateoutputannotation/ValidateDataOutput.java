@@ -3,18 +3,18 @@ package validateoutputannotation;
 import java.lang.reflect.Field;
 import java.util.Objects;
 
-public class ValidateDataOutput {
+import crosscuttingconcern.ChainCrossCuttingConcern;
 
-	public void validate(Object object) {
+public class ValidateDataOutput implements ChainCrossCuttingConcern {
+
+	public void doConcern(Object object) {
 		if (Objects.isNull(object)) {
 	        throw new ValidateOutputAnnotationNotPresentException("The object to serialize is null");
 	    }
 	         
 	    Class<?> clazz = object.getClass();
 	    if (!clazz.isAnnotationPresent(ValidateOutput.class)) {
-	        throw new ValidateOutputAnnotationNotPresentException("The class "
-	          + clazz.getSimpleName() 
-	          + " is not annotated with ValidateOutput");
+	    	return;
 	    }
 	    
 	    validateWholeNumberField(object);
@@ -26,6 +26,7 @@ public class ValidateDataOutput {
 		Class<?> clazz = object.getClass();
 		 for (Field field : clazz.getDeclaredFields()) {
 		        if (field.isAnnotationPresent(ValidateWholeNumber.class)) {
+		        	field.setAccessible(true); 
 		        	ValidateWholeNumber validate = field.getDeclaredAnnotation(ValidateWholeNumber.class);
 		        	String fieldName = field.getName();
 		        	String value = (String) field.get(object);

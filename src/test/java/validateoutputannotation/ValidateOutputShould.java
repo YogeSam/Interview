@@ -2,16 +2,18 @@ package validateoutputannotation;
 
 import static org.junit.Assert.*;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class ValidateOutputShould {
 
+	@Ignore
 	@Test(expected = ValidateOutputAnnotationNotPresentException.class)
 	public void throw_exception_if_validateoutput_not_present() {
 		class TestObject{
 			
 		}
-		new ValidateDataOutput().validate(new TestObject());
+		new ValidateDataOutput().doConcern(new TestObject());
 	}
 	
 	@Test(expected = ValidateOuputViolationException.class)
@@ -20,9 +22,9 @@ public class ValidateOutputShould {
 		@ValidateOutput
 		class TestObject {
 			@ValidateWholeNumber
-			String number = "-1";
+			String number = "a";
 		}
-		new ValidateDataOutput().validate(new TestObject());
+		new ValidateDataOutput().doConcern(new TestObject());
 	}
 
 	@Test(expected = ValidateOuputViolationException.class)
@@ -33,7 +35,7 @@ public class ValidateOutputShould {
 			@ValidateWholeNumber(min=1, max=10)
 			String number = "12";
 		}
-		new ValidateDataOutput().validate(new TestObject());
+		new ValidateDataOutput().doConcern(new TestObject());
 	}
 
 	
@@ -44,7 +46,7 @@ public class ValidateOutputShould {
 			@ValidateWholeNumber
 			String number = "1";
 		}
-		new ValidateDataOutput().validate(new TestObject());
+		new ValidateDataOutput().doConcern(new TestObject());
 	}	
 	
 	
