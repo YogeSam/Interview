@@ -13,6 +13,11 @@ public class SerializeToJson implements ChainCrossCuttingConcern{
 
 	public String serialize(Object o){
 		doConcern(o);
+		checkIfJSONSerializable(o);
+		return createJSON(o);
+	}
+
+	private String createJSON(Object o) {
 		Gson g = new GsonBuilder()
 				  .excludeFieldsWithoutExposeAnnotation()
 				  .create();
@@ -21,7 +26,9 @@ public class SerializeToJson implements ChainCrossCuttingConcern{
 	
 	public void doConcern(Object object) {
 		new ValidateDataOutput().doConcern(object);
-		
+	}
+	
+	private void checkIfJSONSerializable(Object object) {
 	    if (Objects.isNull(object)) {
 	        throw new JsonSerializationException("The object to serialize is null");
 	    }
