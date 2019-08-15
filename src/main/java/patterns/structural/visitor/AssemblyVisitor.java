@@ -3,20 +3,24 @@ package patterns.structural.visitor;
 public class AssemblyVisitor implements Visitor {
 
 	
+	private static final String MONITOR_ASSEMBLED = "Monitor Assembled";
+	private static final String KEYBOARD_ASSEMBLED = "Keyboard  Assembled";
+	private static final String MOUSE_ASSEMBLED = "Mouse Assembled";
+
 	public String visit(MousePart a) {
 		// TODO Auto-generated method stub
-		return "Mouse Assembled";
+		return AssemblyVisitor.MOUSE_ASSEMBLED;
 
 	}
 	
 	public String visit(KeyboardPart a) {
 		// TODO Auto-generated method stub
-		return "Keyboard  Assembled";
+		return AssemblyVisitor.KEYBOARD_ASSEMBLED;
 	}
 	
 	public String visit(MonitorPart a) {
 		// TODO Auto-generated method stub
-		return "Monitor Assembled";
+		return AssemblyVisitor.MONITOR_ASSEMBLED;
 	}
 
 	public String visit(Part a) {

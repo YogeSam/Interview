@@ -24,6 +24,14 @@ public class BookInfo {
 	
 	public String findBook(BookService bookService, int bookid) {
 		return bookService.findBook(bookid).toString();
+	}
+
+	public BookEntity update(BookService bookService, BookEntity bookEntity) {
+		return bookService.update(bookEntity);
+	}  
+	
+	public BookEntity update(BookEntity bookEntity) {
+		return update(new BookServiceImpl(), bookEntity);
 	}  
 
 }
