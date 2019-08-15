@@ -1,7 +1,9 @@
 //This is a class file for performing combinatorics functions
 package combinatorial.group;
 
-
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.Vector;
 
 public class Combinatorial {

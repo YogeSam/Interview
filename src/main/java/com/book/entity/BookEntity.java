@@ -4,10 +4,14 @@ import com.google.gson.annotations.Expose;
 
 import jsonannotation.JSONSerializable;
 import jsonannotation.SerializeToJson;
+import validateoutputannotation.ValidateOutput;
+import validateoutputannotation.ValidateWholeNumber;
 
 @JSONSerializable
+@ValidateOutput
 public class BookEntity {
 	@Expose
+	@ValidateWholeNumber(min=1, max=10)
 	String bookId;
 	@Expose
 	String bookName;
@@ -18,7 +22,6 @@ public class BookEntity {
 		this.bookId = bookId;
 		this.bookName = bookName;
 		this.authorName = authorName;
-
 	}
 	public String getBookId() {
 		return bookId;

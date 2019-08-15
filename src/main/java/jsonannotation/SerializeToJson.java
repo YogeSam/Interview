@@ -1,13 +1,18 @@
 package jsonannotation;
 
+
 import java.util.Objects;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-public class SerializeToJson {
+import crosscuttingconcern.ChainCrossCuttingConcern;
+import validateoutputannotation.ValidateDataOutput;
+
+public class SerializeToJson implements ChainCrossCuttingConcern{
 
 	public String serialize(Object o){
+		doConcern(o);
 		checkIfJSONSerializable(o);
 		return createJSON(o);
 	}
@@ -17,6 +22,10 @@ public class SerializeToJson {
 				  .excludeFieldsWithoutExposeAnnotation()
 				  .create();
 		return g.toJson(o);
+	}
+	
+	public void doConcern(Object object) {
+		new ValidateDataOutput().doConcern(object);
 	}
 	
 	private void checkIfJSONSerializable(Object object) {

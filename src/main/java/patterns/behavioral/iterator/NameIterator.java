@@ -17,7 +17,7 @@ public class NameIterator implements Iterator {
 	}
 
 	public String next() {
-		String[] names = n.getNames();
+		String names[] = n.getNames();
 		return names[index++];
 	}
 

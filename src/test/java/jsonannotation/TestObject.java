@@ -2,7 +2,9 @@ package jsonannotation;
 
 import com.google.gson.annotations.Expose;
 
+
 @JSONSerializable
+
 public class TestObject {
 	@Expose
 	public int n;
