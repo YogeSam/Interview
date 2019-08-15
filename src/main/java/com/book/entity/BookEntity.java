@@ -1,5 +1,8 @@
 package com.book.entity;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 import com.google.gson.annotations.Expose;
 
 import jsonannotation.JSONSerializable;
@@ -18,6 +21,11 @@ public class BookEntity {
 	@Expose
 	String authorName;
 	
+	String currentdatetime = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date());
+	
+	public String getCurrentdatetime() {
+		return currentdatetime;
+	}
 	public BookEntity(String bookId, String bookName, String authorName) {
 		this.bookId = bookId;
 		this.bookName = bookName;
